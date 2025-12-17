@@ -3,118 +3,927 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Love Music For Kery ❤️</title>
-    <link rel="stylesheet" href="css/style.css">
+    <title>For You ❤️ | A Special Video</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Playfair Display', serif;
+            color: #fff;
+            line-height: 1.6;
+            min-height: 100vh;
+            overflow-x: hidden;
+            background: #000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Container */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            padding: 2rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Header */
+        .video-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            animation: fadeIn 1.5s ease-out;
+        }
+
+        .title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #ff6b8b;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(45deg, #ff6b8b, #ff8ba0, #ff6b8b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.8);
+            font-style: italic;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Heart Icon */
+        .heart-icon {
+            font-size: 2.5rem;
+            color: #ff6b8b;
+            margin: 1rem 0;
+            animation: heartbeat 2s infinite;
+        }
+
+        /* Video Container */
+        .video-container {
+            position: relative;
+            width: 100%;
+            max-width: 900px;
+            margin: 0 auto;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(255, 107, 139, 0.15);
+            border: 2px solid rgba(255, 107, 139, 0.2);
+            backdrop-filter: blur(10px);
+        }
+
+        /* Video Player */
+        .video-player {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 15px;
+            background: #000;
+        }
+
+        /* Video Overlay */
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background: rgba(0, 0, 0, 0.7);
+            opacity: 1;
+            transition: opacity 0.5s ease;
+            border-radius: 15px;
+        }
+
+        .video-overlay.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .overlay-content {
+            text-align: center;
+            padding: 2rem;
+            max-width: 600px;
+        }
+
+        .overlay-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            color: #ff6b8b;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
+        }
+
+        .overlay-message {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 2rem;
+            color: rgba(255, 255, 255, 0.9);
+            font-style: italic;
+        }
+
+        /* Play Button */
+        .play-button {
+            background: linear-gradient(135deg, #ff6b8b, #ff4757);
+            border: none;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            color: white;
+            font-size: 2rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 30px rgba(255, 107, 139, 0.4);
+            animation: pulse 3s infinite;
+        }
+
+        .play-button:hover {
+            transform: scale(1.1);
+            box-shadow: 0 15px 40px rgba(255, 107, 139, 0.6);
+        }
+
+        /* Video Controls */
+        .video-controls {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+            padding: 1.5rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            border-bottom-left-radius: 15px;
+            border-bottom-right-radius: 15px;
+        }
+
+        .video-container:hover .video-controls {
+            opacity: 1;
+        }
+
+        .control-btn {
+            background: transparent;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 0.5rem;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .control-btn:hover {
+            background: rgba(255, 107, 139, 0.3);
+            transform: scale(1.1);
+        }
+
+        .progress-container {
+            flex: 1;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 3px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .progress-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #ff6b8b, #ff4757);
+            width: 0%;
+            transition: width 0.1s linear;
+        }
+
+        .time-display {
+            color: white;
+            font-size: 1rem;
+            min-width: 100px;
+            text-align: center;
+            font-family: 'Playfair Display', serif;
+        }
+
+        .volume-control {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .volume-slider {
+            width: 100px;
+            -webkit-appearance: none;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 3px;
+            outline: none;
+        }
+
+        .volume-slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: #ff6b8b;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Fullscreen Button */
+        .fullscreen-btn {
+            margin-left: auto;
+        }
+
+        /* Video Stats */
+        .video-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 1.5rem;
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 0.9rem;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .stat-item i {
+            color: #ff6b8b;
+        }
+
+        /* Love Message */
+        .love-message {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 2rem;
+            background: rgba(255, 107, 139, 0.1);
+            border-radius: 15px;
+            border: 1px solid rgba(255, 107, 139, 0.2);
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            animation: fadeIn 2s ease-out 1s both;
+        }
+
+        .message-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2rem;
+            color: #ff6b8b;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .message-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.9);
+            font-style: italic;
+        }
+
+        /* Floating Hearts */
+        .floating-hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .heart {
+            position: absolute;
+            color: rgba(255, 107, 139, 0.3);
+            font-size: 1.5rem;
+            animation: floatHeart 15s infinite linear;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        @keyframes floatHeart {
+            0% {
+                transform: translateY(100vh) translateX(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.3;
+            }
+            90% {
+                opacity: 0.3;
+            }
+            100% {
+                transform: translateY(-100px) translateX(100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes glow {
+            0%, 100% { 
+                box-shadow: 0 0 20px rgba(255, 107, 139, 0.3),
+                           0 0 40px rgba(255, 107, 139, 0.1); 
+            }
+            50% { 
+                box-shadow: 0 0 40px rgba(255, 107, 139, 0.6),
+                           0 0 80px rgba(255, 107, 139, 0.2); 
+            }
+        }
+
+        /* Video Loading Animation */
+        .loading-animation {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: none;
+        }
+
+        .spinner {
+            width: 60px;
+            height: 60px;
+            border: 4px solid rgba(255, 107, 139, 0.3);
+            border-top: 4px solid #ff6b8b;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .title {
+                font-size: 2.5rem;
+            }
+            
+            .subtitle {
+                font-size: 1rem;
+                padding: 0 1rem;
+            }
+            
+            .video-overlay {
+                padding: 1rem;
+            }
+            
+            .overlay-title {
+                font-size: 2rem;
+            }
+            
+            .overlay-message {
+                font-size: 1rem;
+            }
+            
+            .play-button {
+                width: 70px;
+                height: 70px;
+                font-size: 1.5rem;
+            }
+            
+            .video-controls {
+                padding: 1rem;
+                gap: 1rem;
+            }
+            
+            .control-btn {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+            
+            .volume-slider {
+                width: 80px;
+            }
+            
+            .message-title {
+                font-size: 1.8rem;
+            }
+            
+            .message-text {
+                font-size: 1rem;
+            }
+            
+            .video-stats {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .title {
+                font-size: 2rem;
+            }
+            
+            .video-controls {
+                flex-wrap: wrap;
+            }
+            
+            .progress-container {
+                order: 3;
+                width: 100%;
+                margin-top: 0.5rem;
+            }
+            
+            .volume-control {
+                order: 2;
+            }
+            
+            .fullscreen-btn {
+                order: 1;
+            }
+        }
+    </style>
 </head>
-<body class="music-bg">
+<body>
+    <!-- Floating Hearts Background -->
+    <div class="floating-hearts" id="floatingHearts"></div>
+    
     <div class="container">
-        <header class="main-header">
-            <h1>Songs That Remind Me of <span class="person-name">Kery</span></h1>
-            <p class="subtitle">Beautiful music for <span class="person-name">Kery's</span> beautiful soul</p>
-        </header>
+        <!-- Header -->
+        <div class="video-header">
+            <h1 class="title">Just for You <span class="person-name">Kery</span></h1>
+            <div class="heart-icon">
+                <i class="fas fa-heart"></i>
+            </div>
+            <p class="subtitle">A special video message that comes straight from the heart</p>
+        </div>
         
-        <main class="music-container">
-            <div class="music-intro">
-                <p>Some songs capture feelings better than words ever could. These songs remind me of <span class="person-name">Kery's</span> beautiful light.</p>
+        <!-- Video Container -->
+        <div class="video-container">
+            <!-- Video Player -->
+            <video class="video-player" id="mainVideo" preload="metadata">
+                <!-- Place your video source here -->
+                <!-- Example: <source src="your-video.mp4" type="video/mp4"> -->
+                <!-- For demo, using a placeholder video -->
+                <source src="BENSOUL - FORGET YOU (ACOUSTIC) SMS [Skiza 8549274] to 811.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+            
+            <!-- Video Overlay -->
+            <div class="video-overlay" id="videoOverlay">
+                <div class="overlay-content">
+                    <h2 class="overlay-title">Ready to Watch?</h2>
+                    <p class="overlay-message">
+                        This video was made especially for you. It's filled with moments, 
+                        memories, and a message that comes straight from my heart. 
+                        Press play when you're ready to begin.
+                    </p>
+                    <button class="play-button" id="playOverlayBtn">
+                        <i class="fas fa-play"></i>
+                    </button>
+                </div>
             </div>
             
-            <!-- Compact Video Player -->
-            <div class="compact-video-player">
-                <h2><i class="fas fa-play-circle"></i> <span class="person-name">Kery's</span> Love Playlist</h2>
+            <!-- Loading Animation -->
+            <div class="loading-animation" id="loadingAnimation">
+                <div class="spinner"></div>
+            </div>
+            
+            <!-- Video Controls -->
+            <div class="video-controls" id="videoControls">
+                <button class="control-btn" id="playPauseBtn" title="Play/Pause">
+                    <i class="fas fa-play"></i>
+                </button>
                 
-                <div class="video-slider">
-                    <!-- Video 1 - Compact -->
-                    <div class="video-item active">
-                        <div class="video-thumbnail">
-                            <div class="play-btn"><i class="fas fa-play"></i></div>
-                            <img src="https://img.youtube.com/vi/BS46_TW1rAo/mqdefault.jpg" alt="You're Beautiful">
-                        </div>
-                        <div class="video-info-compact">
-                            <h3>You're Beautiful</h3>
-                            <p class="artist">James Blunt</p>
-                            <p class="song-message">This song reminds me of how beautiful <span class="person-name">Kery</span> truly is</p>
-                            <a href="https://youtu.be/BS46_TW1rAo" target="_blank" class="watch-btn">
-                                <i class="fas fa-external-link-alt"></i> Listen for <span class="person-name">Kery</span>
-                            </a>
-                        </div>
-                    </div>
-                    
-                    <!-- Video 2 - Compact -->
-                    <div class="video-item">
-                        <div class="video-thumbnail">
-                            <div class="play-btn"><i class="fas fa-play"></i></div>
-                            <img src="https://img.youtube.com/vi/rtOvBOTyX00/mqdefault.jpg" alt="A Thousand Years">
-                        </div>
-                        <div class="video-info-compact">
-                            <h3>A Thousand Years</h3>
-                            <p class="artist">Christina Perri</p>
-                            <p class="song-message">I could admire <span class="person-name">Kery</span> for a thousand years</p>
-                            <a href="https://youtu.be/rtOvBOTyX00" target="_blank" class="watch-btn">
-                                <i class="fas fa-external-link-alt"></i> Listen for <span class="person-name">Kery</span>
-                            </a>
-                        </div>
-                    </div>
-                    
-                    <!-- Video 3 - Compact -->
-                    <div class="video-item">
-                        <div class="video-thumbnail">
-                            <div class="play-btn"><i class="fas fa-play"></i></div>
-                            <img src="https://img.youtube.com/vi/2Vv-BfVoq4g/mqdefault.jpg" alt="Perfect">
-                        </div>
-                        <div class="video-info-compact">
-                            <h3>Perfect</h3>
-                            <p class="artist">Ed Sheeran</p>
-                            <p class="song-message">Because <span class="person-name">Kery</span> is already perfect just as <span class="person-name">Kery</span> is</p>
-                            <a href="https://youtu.be/2Vv-BfVoq4g" target="_blank" class="watch-btn">
-                                <i class="fas fa-external-link-alt"></i> Listen for <span class="person-name">Kery</span>
-                            </a>
-                        </div>
-                    </div>
+                <button class="control-btn" id="rewindBtn" title="Rewind 10s">
+                    <i class="fas fa-backward"></i>
+                </button>
+                
+                <button class="control-btn" id="forwardBtn" title="Forward 10s">
+                    <i class="fas fa-forward"></i>
+                </button>
+                
+                <div class="progress-container" id="progressContainer">
+                    <div class="progress-bar" id="progressBar"></div>
                 </div>
                 
-                <div class="player-controls">
-                    <button class="control-btn prev-btn"><i class="fas fa-chevron-left"></i></button>
-                    <button class="control-btn play-all-btn"><i class="fas fa-play"></i> Play All for <span class="person-name">Kery</span></button>
-                    <button class="control-btn next-btn"><i class="fas fa-chevron-right"></i></button>
+                <div class="time-display" id="timeDisplay">
+                    <span id="currentTime">0:00</span> / <span id="duration">0:00</span>
                 </div>
-            </div>
-            
-            <div class="music-message">
-                <div class="message-card">
-                    <h2><i class="fas fa-headphones"></i> Why Music for <span class="person-name">Kery</span>?</h2>
-                    <p>Because sometimes a melody can express what words cannot. These songs capture the way I feel about <span class="person-name">Kery</span> - all the admiration, respect, and appreciation.</p>
-                    <p>When <span class="person-name">Kery</span> listens to beautiful music, I hope it reminds <span class="person-name">Kery</span> that:</p>
-                    <ul class="music-list">
-                        <li><i class="fas fa-heart"></i> <span class="person-name">Kery</span> is worthy of beautiful things</li>
-                        <li><i class="fas fa-heart"></i> <span class="person-name">Kery</span> deserves happiness</li>
-                        <li><i class="fas fa-heart"></i> <span class="person-name">Kery</span> is as special as the most beautiful symphony</li>
-                    </ul>
+                
+                <div class="volume-control">
+                    <button class="control-btn" id="muteBtn" title="Mute/Unmute">
+                        <i class="fas fa-volume-up"></i>
+                    </button>
+                    <input type="range" min="0" max="100" value="80" class="volume-slider" id="volumeSlider">
                 </div>
+                
+                <button class="control-btn fullscreen-btn" id="fullscreenBtn" title="Fullscreen">
+                    <i class="fas fa-expand"></i>
+                </button>
             </div>
-            
-            <div class="playlist-suggestion">
-                <h3><i class="fas fa-plus-circle"></i> Create <span class="person-name">Kery's</span> Own Playlist</h3>
-                <p><span class="person-name">Kery</span>, make a playlist of songs that make you feel good about yourself. Call it "<span class="person-name">Kery</span> is Amazing" or "<span class="person-name">Kery's</span> Happy Place."</p>
-            </div>
-            
-            <div class="navigation">
-                <div class="page-links">
-                    <a href="yes.html"><i class="fas fa-backward"></i> Back to Main</a>
-                    <a href="qualities.html"><i class="fas fa-star"></i> <span class="person-name">Kery's</span> Qualities</a>
-                    <a href="index.html"><i class="fas fa-home"></i> Home</a>
-                </div>
-            </div>
-        </main>
+        </div>
         
-        <footer class="main-footer">
-            <p>May <span class="person-name">Kery's</span> life always have a beautiful soundtrack ❤️</p>
-        </footer>
+        <!-- Video Stats -->
+        <div class="video-stats">
+            <div class="stat-item">
+                <i class="fas fa-heart"></i>
+                <span>Made with Love</span>
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-clock"></i>
+                <span id="videoDuration">Loading...</span>
+            </div>
+            <div class="stat-item">
+                <i class="fas fa-eye"></i>
+                <span id="viewCount">Special Viewing</span>
+            </div>
+        </div>
+        
+        <!-- Love Message -->
+        <div class="love-message">
+            <h2 class="message-title">
+                <i class="fas fa-heart"></i>
+                A Personal Message
+                <i class="fas fa-heart"></i>
+            </h2>
+            <p class="message-text" id="dynamicMessage">
+                Every frame of this video was chosen with you in mind. 
+                I hope it brings a smile to your face and warmth to your heart, 
+                just like you do for me every single day.
+            </p>
+        </div>
     </div>
     
-    <script src="js/scripts.js"></script>
+    <script>
+        // DOM Elements
+        const video = document.getElementById('mainVideo');
+        const videoOverlay = document.getElementById('videoOverlay');
+        const playOverlayBtn = document.getElementById('playOverlayBtn');
+        const playPauseBtn = document.getElementById('playPauseBtn');
+        const rewindBtn = document.getElementById('rewindBtn');
+        const forwardBtn = document.getElementById('forwardBtn');
+        const progressBar = document.getElementById('progressBar');
+        const progressContainer = document.getElementById('progressContainer');
+        const currentTimeEl = document.getElementById('currentTime');
+        const durationEl = document.getElementById('duration');
+        const videoDurationEl = document.getElementById('videoDuration');
+        const muteBtn = document.getElementById('muteBtn');
+        const volumeSlider = document.getElementById('volumeSlider');
+        const fullscreenBtn = document.getElementById('fullscreenBtn');
+        const loadingAnimation = document.getElementById('loadingAnimation');
+        const dynamicMessage = document.getElementById('dynamicMessage');
+        const viewCountEl = document.getElementById('viewCount');
+        const floatingHearts = document.getElementById('floatingHearts');
+        
+        // State
+        let isPlaying = false;
+        let viewCount = 1;
+        let firstPlay = true;
+        
+        // Create floating hearts
+        function createFloatingHearts() {
+            const hearts = ['❤️', '🧡', '💛', '💚', '💙', '💜', '🤎', '🖤', '🤍', '💖', '💗', '💓', '💞', '💕', '💘', '💝'];
+            
+            for (let i = 0; i < 20; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.className = 'heart';
+                    heart.innerHTML = hearts[Math.floor(Math.random() * hearts.length)];
+                    
+                    // Random position
+                    const left = Math.random() * 100;
+                    const size = 1 + Math.random() * 2;
+                    const duration = 15 + Math.random() * 20;
+                    const delay = Math.random() * 10;
+                    
+                    heart.style.left = `${left}%`;
+                    heart.style.fontSize = `${size}rem`;
+                    heart.style.animationDuration = `${duration}s`;
+                    heart.style.animationDelay = `${delay}s`;
+                    heart.style.opacity = `${0.1 + Math.random() * 0.3}`;
+                    
+                    floatingHearts.appendChild(heart);
+                    
+                    // Remove heart after animation completes
+                    setTimeout(() => {
+                        if (heart.parentNode) {
+                            heart.parentNode.removeChild(heart);
+                        }
+                    }, (duration + delay) * 1000);
+                }, i * 500);
+            }
+        }
+        
+        // Format time (MM:SS)
+        function formatTime(seconds) {
+            if (isNaN(seconds)) return '0:00';
+            const mins = Math.floor(seconds / 60);
+            const secs = Math.floor(seconds % 60);
+            return `${mins}:${secs.toString().padStart(2, '0')}`;
+        }
+        
+        // Update progress bar
+        function updateProgress() {
+            const progress = (video.currentTime / video.duration) * 100;
+            progressBar.style.width = `${progress}%`;
+            currentTimeEl.textContent = formatTime(video.currentTime);
+        }
+        
+        // Set video duration
+        function setVideoDuration() {
+            const duration = video.duration;
+            durationEl.textContent = formatTime(duration);
+            videoDurationEl.textContent = `${Math.floor(duration / 60)} min ${Math.floor(duration % 60)} sec`;
+        }
+        
+        // Play/Pause video
+        function togglePlayPause() {
+            if (video.paused) {
+                video.play();
+                playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                playPauseBtn.title = 'Pause';
+                isPlaying = true;
+                
+                if (firstPlay) {
+                    viewCount++;
+                    viewCountEl.textContent = `${viewCount} Special Viewing${viewCount > 1 ? 's' : ''}`;
+                    firstPlay = false;
+                    
+                    // Update message after first play
+                    dynamicMessage.innerHTML = `
+                        Thank you for watching this video made just for you. 
+                        Every time you watch it, it reminds me how special you are to me. 
+                        You deserve all the love and happiness in the world.
+                    `;
+                }
+            } else {
+                video.pause();
+                playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+                playPauseBtn.title = 'Play';
+                isPlaying = false;
+            }
+        }
+        
+        // Skip forward 10 seconds
+        function skipForward() {
+            video.currentTime = Math.min(video.currentTime + 10, video.duration);
+        }
+        
+        // Rewind 10 seconds
+        function skipBackward() {
+            video.currentTime = Math.max(video.currentTime - 10, 0);
+        }
+        
+        // Set progress on click
+        function setProgress(e) {
+            const width = this.clientWidth;
+            const clickX = e.offsetX;
+            const duration = video.duration;
+            video.currentTime = (clickX / width) * duration;
+        }
+        
+        // Toggle mute
+        function toggleMute() {
+            video.muted = !video.muted;
+            muteBtn.innerHTML = video.muted ? 
+                '<i class="fas fa-volume-mute"></i>' : 
+                '<i class="fas fa-volume-up"></i>';
+            muteBtn.title = video.muted ? 'Unmute' : 'Mute';
+            
+            if (video.muted) {
+                volumeSlider.value = 0;
+            } else {
+                volumeSlider.value = video.volume * 100;
+            }
+        }
+        
+        // Change volume
+        function changeVolume() {
+            video.volume = volumeSlider.value / 100;
+            video.muted = video.volume === 0;
+            muteBtn.innerHTML = video.volume === 0 ? 
+                '<i class="fas fa-volume-mute"></i>' : 
+                '<i class="fas fa-volume-up"></i>';
+            muteBtn.title = video.volume === 0 ? 'Unmute' : 'Mute';
+        }
+        
+        // Toggle fullscreen
+        function toggleFullscreen() {
+            const container = document.querySelector('.video-container');
+            
+            if (!document.fullscreenElement) {
+                if (container.requestFullscreen) {
+                    container.requestFullscreen();
+                } else if (container.webkitRequestFullscreen) {
+                    container.webkitRequestFullscreen();
+                } else if (container.msRequestFullscreen) {
+                    container.msRequestFullscreen();
+                }
+                fullscreenBtn.innerHTML = '<i class="fas fa-compress"></i>';
+                fullscreenBtn.title = 'Exit Fullscreen';
+            } else {
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.webkitExitFullscreen) {
+                    document.webkitExitFullscreen();
+                } else if (document.msExitFullscreen) {
+                    document.msExitFullscreen();
+                }
+                fullscreenBtn.innerHTML = '<i class="fas fa-expand"></i>';
+                fullscreenBtn.title = 'Fullscreen';
+            }
+        }
+        
+        // Handle video loading
+        function showLoading() {
+            loadingAnimation.style.display = 'block';
+        }
+        
+        function hideLoading() {
+            loadingAnimation.style.display = 'none';
+        }
+        
+        // Initialize
+        function init() {
+            // Create initial floating hearts
+            createFloatingHearts();
+            
+            // Event Listeners
+            playOverlayBtn.addEventListener('click', function() {
+                videoOverlay.classList.add('hidden');
+                togglePlayPause();
+            });
+            
+            playPauseBtn.addEventListener('click', togglePlayPause);
+            rewindBtn.addEventListener('click', skipBackward);
+            forwardBtn.addEventListener('click', skipForward);
+            progressContainer.addEventListener('click', setProgress);
+            muteBtn.addEventListener('click', toggleMute);
+            volumeSlider.addEventListener('input', changeVolume);
+            fullscreenBtn.addEventListener('click', toggleFullscreen);
+            
+            // Video events
+            video.addEventListener('loadedmetadata', setVideoDuration);
+            video.addEventListener('timeupdate', updateProgress);
+            video.addEventListener('play', function() {
+                playPauseBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                playPauseBtn.title = 'Pause';
+                isPlaying = true;
+            });
+            
+            video.addEventListener('pause', function() {
+                playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+                playPauseBtn.title = 'Play';
+                isPlaying = false;
+            });
+            
+            video.addEventListener('waiting', showLoading);
+            video.addEventListener('playing', hideLoading);
+            video.addEventListener('canplay', hideLoading);
+            
+            video.addEventListener('ended', function() {
+                playPauseBtn.innerHTML = '<i class="fas fa-play"></i>';
+                playPauseBtn.title = 'Play';
+                isPlaying = false;
+                
+                // Show replay message
+                dynamicMessage.innerHTML = `
+                    Thank you for watching! This video was made with all my love. 
+                    You can watch it again anytime - it will always be here for you.
+                    <br><br>
+                    <i class="fas fa-heart" style="color: #ff6b8b; margin: 0 5px;"></i>
+                    Forever yours,
+                    <i class="fas fa-heart" style="color: #ff6b8b; margin: 0 5px;"></i>
+                `;
+                
+                // Create heart explosion
+                createHeartExplosion();
+            });
+            
+            // Keyboard shortcuts
+            document.addEventListener('keydown', function(e) {
+                switch(e.key) {
+                    case ' ':
+                    case 'Spacebar':
+                        e.preventDefault();
+                        togglePlayPause();
+                        break;
+                    case 'ArrowRight':
+                        e.preventDefault();
+                        skipForward();
+                        break;
+                    case 'ArrowLeft':
+                        e.preventDefault();
+                        skipBackward();
+                        break;
+                    case 'f':
+                    case 'F':
+                        e.preventDefault();
+                        toggleFullscreen();
+                        break;
+                    case 'm':
+                    case 'M':
+                        e.preventDefault();
+                        toggleMute();
+                        break;
+                }
+            });
+            
+            // Auto-create floating hearts every 30 seconds
+            setInterval(createFloatingHearts, 30000);
+            
+            // Click effect - create hearts
+            document.addEventListener('click', function(e) {
+                if (e.target.closest('.control-btn') || e.target.closest('.play-button')) return;
+                
+                const heart = document.createElement('div');
+                heart.innerHTML = '❤️';
+                heart.style.position = 'fixed';
+                heart.style.left = `${e.clientX}px`;
+                heart.style.top = `${e.clientY}px`;
+                heart.style.fontSize = '2rem';
+                heart.style.pointerEvents = 'none';
+                heart.style.zIndex = '1000';
+                heart.style.animation = 'floatHeart 3s ease-in-out forwards';
+                heart.style.color = '#ff6b8b';
+                document.body.appendChild(heart);
+                
+                setTimeout(() => heart.remove(), 3000);
+            });
+        }
+        
+        // Create heart explosion effect
+        function createHeartExplosion() {
+            const hearts = ['❤️', '💖', '💗', '💓', '💞', '💕', '💘', '💝'];
+            const container = document.querySelector('.video-container');
+            const rect = container.getBoundingClientRect();
+            
+            for (let i = 0; i < 20; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.innerHTML = hearts[Math.floor(Math.random() * hearts.length)];
+                    heart.style.position = 'absolute';
+                    heart.style.left = `${rect.left + rect.width / 2}px`;
+                    heart.style.top = `${rect.top + rect.height / 2}px`;
+                    heart.style.fontSize = '1.5rem';
+                    heart.style.pointerEvents = 'none';
+                    heart.style.zIndex = '1000';
+                    heart.style.animation = `floatHeart ${1 + Math.random() * 2}s ease-out forwards`;
+                    heart.style.color = '#ff6b8b';
+                    document.body.appendChild(heart);
+                    
+                    setTimeout(() => heart.remove(), 3000);
+                }, i * 100);
+            }
+        }
+        
+        // Initialize when page loads
+        window.addEventListener('DOMContentLoaded', init);
+    </script>
 </body>
 </html>
