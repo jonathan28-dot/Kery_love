@@ -3,107 +3,1223 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Beautiful Qualities ✨</title>
-    <link rel="stylesheet" href="style.css">
+    <title>A Letter for Kery ✨</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Playfair+Display:wght@400;700&family=Caveat:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Playfair Display', serif;
+            line-height: 1.6;
+            min-height: 100vh;
+            overflow-x: hidden;
+            background: linear-gradient(135deg, #ffebee 0%, #ffcdd2 100%);
+            background-attachment: fixed;
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1rem;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        /* Letter Container */
+        .letter-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            transition: all 0.5s ease;
+        }
+
+        /* When letter is folded, reduce container height */
+        .letter-container.folded {
+            min-height: auto;
+            padding: 2rem 1rem;
+            justify-content: flex-start;
+        }
+
+        /* Envelope Styles */
+        .envelope {
+            position: relative;
+            width: 300px;
+            height: 200px;
+            margin: 0 auto 2rem;
+            cursor: pointer;
+            transition: all 1s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            opacity: 0;
+            transform: translateY(20px);
+            display: none;
+        }
+
+        .envelope.visible {
+            opacity: 1;
+            transform: translateY(0);
+            display: block;
+        }
+
+        .envelope-front {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: #ff6b8b;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(255, 107, 139, 0.3);
+            overflow: hidden;
+            z-index: 2;
+        }
+
+        .envelope-flap {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 50%;
+            background: #ff4757;
+            clip-path: polygon(0 0, 50% 100%, 100% 0);
+            transform-origin: top;
+            transition: transform 0.5s ease;
+        }
+
+        .envelope-body {
+            position: absolute;
+            top: 50%;
+            left: 10%;
+            width: 80%;
+            height: 80%;
+            background: #ff8ba0;
+            border-radius: 0 0 10px 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 1rem;
+        }
+
+        .seal {
+            width: 60px;
+            height: 60px;
+            background: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: #ff4757;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            margin-bottom: 1rem;
+        }
+
+        .address {
+            text-align: center;
+            color: white;
+            font-family: 'Caveat', cursive;
+            font-size: 1.2rem;
+        }
+
+        .address p {
+            margin: 0.3rem 0;
+        }
+
+        .envelope-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: #ff8ba0;
+            border-radius: 10px;
+            transform: translateZ(-10px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Letter Styles */
+        .letter {
+            background: linear-gradient(to bottom, #fff9f9, #fff5f5);
+            border-radius: 15px;
+            padding: 2.5rem;
+            box-shadow: 
+                0 20px 50px rgba(255, 107, 139, 0.2),
+                0 0 0 1px rgba(255, 107, 139, 0.1),
+                inset 0 0 50px rgba(255, 107, 139, 0.05);
+            position: relative;
+            opacity: 0;
+            transform: translateY(50px) scale(0.9);
+            transition: all 1s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            visibility: hidden;
+            max-width: 700px;
+            margin: 0 auto;
+            border: 1px solid rgba(255, 107, 139, 0.2);
+            display: none;
+        }
+
+        .letter.visible {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+            visibility: visible;
+            display: block;
+        }
+
+        /* When letter is folded, reduce the space */
+        .letter-container:has(.letter:not(.visible)) {
+            min-height: 60vh;
+        }
+
+        .letter-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 2px dashed rgba(255, 107, 139, 0.3);
+        }
+
+        .letter-date {
+            font-family: 'Caveat', cursive;
+            font-size: 1.3rem;
+            color: #ff6b8b;
+            font-weight: bold;
+        }
+
+        .letter-stamp {
+            background: linear-gradient(45deg, #ff6b8b, #ff4757);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 3px 10px rgba(255, 107, 139, 0.3);
+        }
+
+        .letter-content {
+            font-family: 'Playfair Display', serif;
+            line-height: 1.8;
+            color: #5a3d3d;
+        }
+
+        .letter-greeting {
+            font-family: 'Dancing Script', cursive;
+            font-size: 2.5rem;
+            color: #ff6b8b;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .letter-section {
+            margin-bottom: 1.5rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease;
+        }
+
+        .letter-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .letter-section p {
+            font-size: 1.1rem;
+            margin-bottom: 1rem;
+        }
+
+        .heart-divider {
+            text-align: center;
+            margin: 2rem 0;
+            opacity: 0;
+            animation: fadeIn 1s ease 2s forwards;
+        }
+
+        .heart-divider i {
+            color: #ff6b8b;
+            font-size: 1.5rem;
+            margin: 0 0.5rem;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .heart-divider i:nth-child(2) {
+            animation-delay: 0.5s;
+        }
+
+        .heart-divider i:nth-child(3) {
+            animation-delay: 1s;
+        }
+
+        /* Letter Quote */
+        .letter-quote {
+            background: rgba(255, 107, 139, 0.1);
+            border-left: 4px solid #ff6b8b;
+            padding: 1.5rem;
+            margin: 2rem 0;
+            border-radius: 0 10px 10px 0;
+            position: relative;
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: all 0.8s ease 0.5s;
+        }
+
+        .letter-quote.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .quote-mark {
+            position: absolute;
+            font-size: 3rem;
+            color: rgba(255, 107, 139, 0.3);
+            font-family: 'Times New Roman', serif;
+        }
+
+        .quote-mark.left {
+            top: -10px;
+            left: 10px;
+        }
+
+        .quote-mark.right {
+            bottom: -30px;
+            right: 10px;
+        }
+
+        .quote-text {
+            font-style: italic;
+            font-size: 1.2rem;
+            color: #7a4d4d;
+            margin: 0;
+        }
+
+        /* Amazing List */
+        .amazing-list {
+            background: white;
+            border-radius: 10px;
+            padding: 2rem;
+            margin: 2rem 0;
+            box-shadow: 0 5px 20px rgba(255, 107, 139, 0.1);
+            opacity: 0;
+            transform: scale(0.95);
+            transition: all 0.8s ease 1s;
+        }
+
+        .amazing-list.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .amazing-list h3 {
+            color: #ff6b8b;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.8rem;
+        }
+
+        .amazing-list ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .list-item {
+            padding: 0.8rem 0;
+            border-bottom: 1px dashed rgba(255, 107, 139, 0.2);
+            opacity: 0;
+            transform: translateX(-20px);
+            transition: all 0.5s ease;
+        }
+
+        .list-item:last-child {
+            border-bottom: none;
+        }
+
+        .list-item.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .list-item i {
+            color: #ff6b8b;
+            margin-right: 0.8rem;
+            font-size: 0.9rem;
+        }
+
+        /* Final Message */
+        .final-message {
+            background: linear-gradient(135deg, rgba(255, 107, 139, 0.1), rgba(255, 139, 160, 0.1));
+            border-radius: 10px;
+            padding: 2rem;
+            margin: 2rem 0;
+            text-align: center;
+            font-size: 1.2rem;
+            color: #7a4d4d;
+            font-weight: 500;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease 1.5s;
+        }
+
+        .final-message.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Letter Closing */
+        .letter-closing {
+            margin-top: 3rem;
+            text-align: right;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s ease 2s;
+        }
+
+        .letter-closing.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .signature {
+            margin: 1rem 0;
+            text-align: center;
+        }
+
+        .signature-line {
+            width: 200px;
+            height: 80px;
+            opacity: 0.7;
+        }
+
+        .closing-name {
+            font-family: 'Caveat', cursive;
+            font-size: 1.5rem;
+            color: #ff6b8b;
+            margin-top: 0.5rem;
+        }
+
+        /* Secret Message */
+        .secret-message {
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .secret-btn {
+            background: linear-gradient(45deg, #ff6b8b, #ff4757);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 107, 139, 0.3);
+        }
+
+        .secret-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 107, 139, 0.4);
+        }
+
+        .secret-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 10px;
+            margin-top: 1rem;
+            padding: 0 1.5rem;
+            opacity: 0;
+        }
+
+        .secret-content.revealed {
+            max-height: 200px;
+            padding: 1.5rem;
+            opacity: 1;
+            box-shadow: 0 5px 15px rgba(255, 107, 139, 0.2);
+        }
+
+        .secret-content p {
+            color: #ff6b8b;
+            font-size: 1.1rem;
+            font-weight: bold;
+            text-align: center;
+            margin: 0;
+        }
+
+        /* Letter Fold */
+        .letter-fold {
+            position: absolute;
+            bottom: -20px;
+            left: 20px;
+            right: 20px;
+            height: 40px;
+            background: linear-gradient(to bottom, rgba(255, 245, 245, 0.8), rgba(255, 245, 245, 0.2));
+            border-radius: 0 0 15px 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Navigation */
+        .letter-navigation {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 3rem;
+            flex-wrap: wrap;
+            transition: margin-top 0.5s ease;
+        }
+
+        /* When letter is folded, bring navigation closer */
+        .letter-container:has(.letter:not(.visible)) .letter-navigation {
+            margin-top: 2rem;
+        }
+
+        .nav-btn {
+            background: white;
+            color: #ff6b8b;
+            border: 2px solid #ff8ba0;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            font-size: 0.9rem;
+        }
+
+        .nav-btn:hover {
+            background: #ff6b8b;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(255, 107, 139, 0.3);
+        }
+
+        .home-btn {
+            background: #ff6b8b;
+            color: white;
+        }
+
+        /* Flower Bouquet */
+        .flower-bouquet {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            margin-top: 2rem;
+            transition: margin-top 0.5s ease, opacity 0.5s ease;
+        }
+
+        /* When letter is folded, flowers move up and are more visible */
+        .letter-container:has(.letter:not(.visible)) .flower-bouquet {
+            margin-top: 4rem;
+        }
+
+        .flower {
+            font-size: 2rem;
+            animation: float 4s ease-in-out infinite;
+            opacity: 0.8;
+        }
+
+        .flower:nth-child(1) { animation-delay: 0s; }
+        .flower:nth-child(2) { animation-delay: 0.8s; }
+        .flower:nth-child(3) { animation-delay: 1.6s; }
+        .flower:nth-child(4) { animation-delay: 2.4s; }
+        .flower:nth-child(5) { animation-delay: 3.2s; }
+
+        /* Floating Petals */
+        .floating-petals {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .petal {
+            position: absolute;
+            font-size: 1.5rem;
+            animation: floatPetals 20s linear infinite;
+            opacity: 0.3;
+        }
+
+        /* Music Player */
+        .letter-music {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 100;
+        }
+
+        .music-toggle {
+            background: rgba(255, 107, 139, 0.9);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(255, 107, 139, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .music-toggle:hover {
+            background: rgba(255, 107, 139, 1);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(255, 107, 139, 0.4);
+        }
+
+        .music-toggle.playing {
+            background: rgba(88, 204, 138, 0.9);
+        }
+
+        /* Person Name Styling */
+        .person-name {
+            color: #ff2e63;
+            font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+            background: linear-gradient(45deg, #ff2e63, #ff8ba0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.1em;
+            position: relative;
+            display: inline-block;
+        }
+
+        .person-name::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #ff2e63, transparent);
+            opacity: 0.7;
+        }
+
+        /* Animations */
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+        }
+
+        @keyframes floatPetals {
+            0% {
+                transform: translateY(-100px) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.3;
+            }
+            90% {
+                opacity: 0.3;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes sparkle {
+            0% {
+                transform: translate(-50%, -50%) scale(0);
+                opacity: 0;
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.5);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(1);
+                opacity: 0;
+            }
+        }
+
+        .sparkle-effect {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 2rem;
+            animation: sparkle 1s ease-out;
+            z-index: 1;
+        }
+
+        /* Animation Classes */
+        .fade-in-section {
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        .slide-in-section {
+            animation: slideInRight 1s ease 0.3s forwards;
+            opacity: 0;
+        }
+
+        .fade-up-section {
+            animation: fadeInUp 1s ease forwards;
+            opacity: 0;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .letter {
+                padding: 1.5rem;
+                margin: 0 1rem;
+            }
+            
+            .letter-greeting {
+                font-size: 2rem;
+            }
+            
+            .envelope {
+                width: 250px;
+                height: 166px;
+            }
+            
+            .amazing-list {
+                padding: 1.5rem;
+            }
+            
+            .letter-navigation {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .nav-btn {
+                width: 100%;
+                max-width: 250px;
+                justify-content: center;
+            }
+            
+            .flower-bouquet {
+                gap: 1rem;
+            }
+            
+            .flower {
+                font-size: 1.5rem;
+            }
+            
+            /* When letter is folded on mobile */
+            .letter-container:has(.letter:not(.visible)) {
+                min-height: 50vh;
+                padding-top: 1rem;
+            }
+            
+            .letter-container:has(.letter:not(.visible)) .envelope {
+                margin-bottom: 1.5rem;
+            }
+            
+            .letter-container:has(.letter:not(.visible)) .letter-navigation {
+                margin-top: 1.5rem;
+            }
+            
+            .letter-container:has(.letter:not(.visible)) .flower-bouquet {
+                margin-top: 3rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .letter {
+                padding: 1rem;
+            }
+            
+            .letter-greeting {
+                font-size: 1.8rem;
+            }
+            
+            .envelope {
+                width: 200px;
+                height: 133px;
+            }
+            
+            .seal {
+                width: 40px;
+                height: 40px;
+                font-size: 1rem;
+            }
+            
+            .address {
+                font-size: 1rem;
+            }
+            
+            .quote-text {
+                font-size: 1rem;
+            }
+            
+            .music-toggle {
+                padding: 0.6rem 1rem;
+                font-size: 0.8rem;
+            }
+            
+            .letter-container:has(.letter:not(.visible)) {
+                min-height: 40vh;
+            }
+            
+            .secret-btn {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.9rem;
+            }
+        }
+    </style>
 </head>
-<body class="love-bg">
-    <div class="container">
-        <header class="main-header">
-            <h1>The <span class="highlight">Qualities</span> That Make You, You</h1>
-            <p class="subtitle">The beautiful traits that define your wonderful self</p>
-        </header>
-        
-        <main class="qualities-container">
-            <div class="quality-grid">
-                <div class="quality-card fade-in-item">
-                    <div class="quality-icon" style="background: #ff6b8b;">
-                        <i class="fas fa-heart"></i>
-                    </div>
-                    <h3>Compassionate</h3>
-                    <p>You feel deeply for others and genuinely want to help. Your empathy makes people feel understood.</p>
-                </div>
-                
-                <div class="quality-card fade-in-item">
-                    <div class="quality-icon" style="background: #6b5b95;">
-                        <i class="fas fa-lightbulb"></i>
-                    </div>
-                    <h3>Thoughtful</h3>
-                    <p>You consider things carefully and remember details that matter. You think before you speak and act.</p>
-                </div>
-                
-                <div class="quality-card fade-in-item">
-                    <div class="quality-icon" style="background: #88b04b;">
-                        <i class="fas fa-leaf"></i>
-                    </div>
-                    <h3>Genuine</h3>
-                    <p>What you see is what you get. You're authentic, real, and true to yourself and others.</p>
-                </div>
-                
-                <div class="quality-card fade-in-item">
-                    <div class="quality-icon" style="background: #ff6f61;">
-                        <i class="fas fa-laugh-wink"></i>
-                    </div>
-                    <h3>Playful</h3>
-                    <p>You know how to have fun and don't take yourself too seriously. Your playful spirit is infectious.</p>
-                </div>
-                
-                <div class="quality-card fade-in-item">
-                    <div class="quality-icon" style="background: #6a5acd;">
-                        <i class="fas fa-shield-alt"></i>
-                    </div>
-                    <h3>Resilient</h3>
-                    <p>You bounce back from challenges with grace. You're stronger than you realize, and it shows.</p>
-                </div>
-                
-                <div class="quality-card fade-in-item">
-                    <div class="quality-icon" style="background: #92a8d1;">
-                        <i class="fas fa-dove"></i>
-                    </div>
-                    <h3>Peaceful</h3>
-                    <p>You have a calming presence. People feel at ease around you, like they can just breathe and be themselves.</p>
-                </div>
-            </div>
-            
-            <div class="affirmation">
-                <div class="affirmation-box">
-                    <h2><i class="fas fa-star"></i> Daily Affirmation For You</h2>
-                    <p class="affirmation-text">"I am enough exactly as I am. My worth isn't determined by what I achieve or what others think of me. I am valuable simply because I exist. My kindness matters, my presence matters, my heart matters. Today, I will treat myself with the same compassion I so freely give to others."</p>
-                    <button class="repeat-btn" id="repeatAffirmation">
-                        <i class="fas fa-redo"></i> Read This Again
-                    </button>
-                </div>
-            </div>
-            
-            <div class="navigation">
-                <a href="music.html" class="next-btn">
-                    <i class="fas fa-arrow-right"></i> Enjoy Some Love Music
-                </a>
-                <div class="page-links">
-                    <a href="admire.html"><i class="fas fa-backward"></i> Back</a>
-                    <a href="yes.html"><i class="fas fa-heart"></i> Amazing Things</a>
-                    <a href="index.html"><i class="fas fa-home"></i> Home</a>
-                </div>
-            </div>
-            
-            <div class="confetti">
-                <div class="confetti-piece"></div>
-                <div class="confetti-piece"></div>
-                <div class="confetti-piece"></div>
-                <div class="confetti-piece"></div>
-                <div class="confetti-piece"></div>
-            </div>
-        </main>
-        
-        <footer class="main-footer">
-            <p>The world is better because you're in it ❤️</p>
-        </footer>
+<body>
+    <!-- Background Petals Animation -->
+    <div class="floating-petals">
+        <div class="petal">🌸</div>
+        <div class="petal">🌹</div>
+        <div class="petal">🌺</div>
+        <div class="petal">🌷</div>
+        <div class="petal">💮</div>
+        <div class="petal">🏵️</div>
     </div>
     
-    <script src="scripts.js"></script>
+    <div class="container">
+        <div class="letter-container">
+            <!-- Envelope Opening Animation -->
+            <div class="envelope" id="envelope">
+                <div class="envelope-front">
+                    <div class="envelope-flap"></div>
+                    <div class="envelope-body">
+                        <div class="seal">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <div class="address">
+                            <p>To: <span class="person-name">Kery</span></p>
+                            <p><i class="fas fa-map-marker-alt"></i> A Special Place in My Heart</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="envelope-back"></div>
+            </div>
+            
+            <!-- The Letter -->
+            <div class="letter" id="letter">
+                <div class="letter-header">
+                    <div class="letter-date">Today</div>
+                    <div class="letter-stamp">
+                        <i class="fas fa-star"></i>
+                        <span>SPECIAL</span>
+                    </div>
+                </div>
+                
+                <div class="letter-content">
+                    <!-- Opening with fade-in -->
+                    <div class="letter-section fade-in-section">
+                        <h2 class="letter-greeting">My Dearest <span class="person-name">Kery</span>,</h2>
+                    </div>
+                    
+                    <!-- First paragraph with slide-in -->
+                    <div class="letter-section slide-in-section">
+                        <p>As I sit down to write this, I find myself searching for words that could possibly capture even a fraction of how incredible you are. you are a constellation of beautiful qualities that light up every room you enter and every life you touch.</p>
+                    </div>
+                    
+                    <!-- Heart transition -->
+                    <div class="heart-divider">
+                        <i class="fas fa-heart"></i>
+                        <i class="fas fa-heart"></i>
+                        <i class="fas fa-heart"></i>
+                    </div>
+                    
+                    <!-- Middle paragraphs with staggered animation -->
+                    <div class="letter-section fade-up-section">
+                        <p>What amazes me most about you, is not just one thing—it's everything. It's the way your laughter sounds like music, the way your kindness flows so naturally, and the way you see beauty in moments that others might overlook.</p>
+                    </div>
+                    
+                    <div class="letter-section fade-up-section" style="animation-delay: 0.3s;">
+                        <p>I want you to know, <span class="person-name">Kery</span>, that the world is genuinely better because you're in it. Your presence adds color to gray days, warmth to cold moments, and meaning to simple interactions. You have this magical ability to make people feel seen, heard, and valued—just by being you.</p>
+                    </div>
+                    
+                    <!-- Quote with special animation -->
+                    <div class="letter-quote">
+                        <div class="quote-mark left">"</div>
+                        <p class="quote-text">Some people are like stars—you don't always see them, but you know they're always there, making the night sky beautiful. <span class="person-name">Kery</span>, you are that star.</p>
+                        <div class="quote-mark right">"</div>
+                    </div>
+                    
+                    <!-- List of amazing things -->
+                    <div class="amazing-list">
+                        <h3><i class="fas fa-sparkles"></i> What Makes you Truly Amazing:</h3>
+                        <ul>
+                            <li class="list-item"><i class="fas fa-heart"></i> <span class="person-name">Your heart</span> is genuinely kind without expecting anything in return</li>
+                            <li class="list-item"><i class="fas fa-sun"></i> <span class="person-name">Your smile</span> can brighten even the darkest days</li>
+                            <li class="list-item"><i class="fas fa-lightbulb"></i> <span class="person-name">Your mind</span> is both intelligent and beautifully creative</li>
+                            <li class="list-item"><i class="fas fa-hands-helping"></i> <span class="person-name">Your presence</span> makes others feel safe and understood</li>
+                            <li class="list-item"><i class="fas fa-gem"></i> <span class="person-name">Your authenticity</span> is rare and precious in this world</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Closing paragraph -->
+                    <div class="letter-section fade-up-section" style="animation-delay: 0.6s;">
+                        <p><span class="person-name">Kery</span>, I hope you carry these words with you on days when you might forget your own magic. I hope you remember that you are worthy of all good things, that you are stronger than you know, and that you are loved more than you can imagine.</p>
+                    </div>
+                    
+                    <!-- Final heartfelt message -->
+                    <div class="final-message">
+                        <p>You are not just amazing—you are extraordinary. You are not just special—you are one of a kind. You are not just loved—you are cherished.</p>
+                    </div>
+                    
+                    <!-- Closing -->
+                    <div class="letter-closing">
+                        <p>With all my admiration,</p>
+                        <div class="signature">
+                            <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='80'%3E%3Cpath d='M20,60 Q40,30 60,50 T100,40 T140,60' stroke='%23ff2e63' fill='none' stroke-width='2'/%3E%3C/svg%3E" alt="Signature" class="signature-line">
+                        </div>
+                        <p class="closing-name">Someone who sees how amazing you are</p>
+                    </div>
+                    
+                    <!-- Secret message reveal -->
+                    <div class="secret-message">
+                        <button class="secret-btn" id="secretBtn">
+                            <i class="fas fa-lock"></i> Click for a secret message, <span class="person-name">Kery</span>
+                        </button>
+                        <div class="secret-content" id="secretContent">
+                            <p><span class="person-name">Kery</span>, every single day you make the world a little more beautiful. Thank you for being you. ❤️</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Letter fold effect -->
+                <div class="letter-fold"></div>
+            </div>
+            
+            <!-- Navigation -->
+            <div class="letter-navigation">
+                <a href="qualities.html" class="nav-btn">
+                    <i class="fas fa-arrow-left"></i>
+                </a>
+                <a href="index.html" class="nav-btn home-btn">
+                    <i class="fas fa-home"></i> Home
+                </a>
+                <button class="nav-btn" id="letterActionBtn">
+                    <i class="fas fa-envelope"></i> Fold Letter
+                </button>
+            </div>
+            
+            <!-- Flower bouquet at bottom -->
+            <div class="flower-bouquet" id="flowerBouquet">
+                <div class="flower">🌹</div>
+                <div class="flower">🌸</div>
+                <div class="flower">🌺</div>
+                <div class="flower">🌻</div>
+                <div class="flower">💐</div>
+            </div>
+        </div>
+    </div>
+    
+    
+    
+    <script>
+    // Letter-specific JavaScript
+    document.addEventListener('DOMContentLoaded', function() {
+        // Get elements
+        const envelope = document.getElementById('envelope');
+        const letter = document.getElementById('letter');
+        const letterActionBtn = document.getElementById('letterActionBtn');
+        const flowerBouquet = document.getElementById('flowerBouquet');
+        const secretBtn = document.getElementById('secretBtn');
+        const secretContent = document.getElementById('secretContent');
+        const musicToggle = document.getElementById('musicToggle');
+        const backgroundMusic = document.getElementById('backgroundMusic');
+        
+        let isLetterOpen = false;
+        let isInitialOpen = false;
+        
+        // Initialize
+        initPage();
+        
+        // Initialize the page
+        function initPage() {
+            // Update names FIRST (before any other initialization)
+            updateNamesFromStorage();
+            
+            // Check if letter was previously folded
+            const savedState = localStorage.getItem('letterState');
+            if (savedState === 'folded') {
+                // Start with letter folded
+                envelope.classList.add('visible');
+                envelope.style.display = 'block';
+                
+                letter.style.display = 'none';
+                
+                // Update button text
+                letterActionBtn.innerHTML = '<i class="fas fa-envelope-open"></i> Open Letter';
+                isLetterOpen = false;
+                
+                // Show bouquet (flowers move up when letter is folded)
+                flowerBouquet.style.marginTop = '4rem';
+            } else {
+                // Auto-open letter after delay
+                setTimeout(openLetter, 1500);
+            }
+        }
+        
+        // Function to update names from localStorage
+        function updateNamesFromStorage() {
+            const savedName = localStorage.getItem('specialPersonName');
+            if (!savedName || savedName === 'Kery') return; // Don't change if it's Kery or empty
+            
+            // Store original HTML patterns
+            const namePatterns = {
+                'Kery': savedName,
+                'Kery\'s': savedName.endsWith('s') ? `${savedName}'` : `${savedName}'s`,
+                'Kery,': `${savedName},`,
+                'Kery.': `${savedName}.`,
+                'Kery!': `${savedName}!`,
+                'Kery?': `${savedName}?`
+            };
+            
+            // Update all person-name elements
+            document.querySelectorAll('.person-name').forEach(element => {
+                const originalHtml = element.getAttribute('data-original') || element.innerHTML;
+                
+                // Store original if not already stored
+                if (!element.hasAttribute('data-original')) {
+                    element.setAttribute('data-original', originalHtml);
+                }
+                
+                // Replace based on patterns
+                let newContent = originalHtml;
+                Object.keys(namePatterns).forEach(pattern => {
+                    const regex = new RegExp(pattern.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'), 'g');
+                    newContent = newContent.replace(regex, namePatterns[pattern]);
+                });
+                
+                element.innerHTML = newContent;
+            });
+        }
+        
+        // Open letter function
+        function openLetter() {
+            if (isLetterOpen) return;
+            
+            isLetterOpen = true;
+            isInitialOpen = true;
+            
+            // Hide envelope with animation
+            envelope.style.transform = 'translateY(-100px) rotateX(-180deg)';
+            envelope.style.opacity = '0';
+            
+            setTimeout(() => {
+                // Show letter
+                letter.style.display = 'block';
+                envelope.style.display = 'none';
+                
+                setTimeout(() => {
+                    letter.classList.add('visible');
+                    
+                    // Move flowers down
+                    flowerBouquet.style.marginTop = '2rem';
+                    
+                    // Trigger section animations if initial open
+                    if (isInitialOpen) {
+                        animateLetterSections();
+                    }
+                    
+                    // Update button
+                    letterActionBtn.innerHTML = '<i class="fas fa-envelope"></i> Fold Letter';
+                    
+                    // Save state
+                    localStorage.setItem('letterState', 'open');
+                }, 50);
+            }, 800);
+        }
+        
+        // Fold letter function
+        function foldLetter() {
+            if (!isLetterOpen) return;
+            
+            isLetterOpen = false;
+            
+            // Hide letter with animation
+            letter.classList.remove('visible');
+            
+            setTimeout(() => {
+                // Hide letter completely
+                letter.style.display = 'none';
+                
+                // Show envelope
+                envelope.style.display = 'block';
+                
+                setTimeout(() => {
+                    envelope.classList.add('visible');
+                    envelope.style.transform = 'translateY(0) rotateX(0)';
+                    envelope.style.opacity = '1';
+                    
+                    // Move flowers up (less space when folded)
+                    flowerBouquet.style.marginTop = '4rem';
+                    
+                    // Update button
+                    letterActionBtn.innerHTML = '<i class="fas fa-envelope-open"></i> Open Letter';
+                    
+                    // Save state
+                    localStorage.setItem('letterState', 'folded');
+                    
+                    // Reset secret message if open
+                    if (secretContent.classList.contains('revealed')) {
+                        secretContent.classList.remove('revealed');
+                        updateSecretButtonText();
+                    }
+                }, 50);
+            }, 800);
+        }
+        
+        // Update secret button text with correct name
+        function updateSecretButtonText() {
+            const savedName = localStorage.getItem('specialPersonName') || 'Kery';
+            if (secretBtn) {
+                const icon = secretContent.classList.contains('revealed') ? 
+                    '<i class="fas fa-lock-open"></i>' : 
+                    '<i class="fas fa-lock"></i>';
+                
+                if (secretContent.classList.contains('revealed')) {
+                    secretBtn.innerHTML = `${icon} Your Secret Message`;
+                } else {
+                    secretBtn.innerHTML = `${icon} Click for a secret message, <span class="person-name">${savedName}</span>`;
+                }
+            }
+        }
+        
+        // Animate letter sections
+        function animateLetterSections() {
+            const sections = document.querySelectorAll('.letter-section, .letter-quote, .amazing-list, .final-message, .letter-closing');
+            sections.forEach((section, index) => {
+                setTimeout(() => {
+                    section.classList.add('visible');
+                }, index * 300);
+            });
+            
+            // Animate list items
+            const listItems = document.querySelectorAll('.list-item');
+            listItems.forEach((item, index) => {
+                setTimeout(() => {
+                    item.classList.add('visible');
+                }, 1500 + (index * 200));
+            });
+            
+            // Animate heart divider
+            setTimeout(() => {
+                document.querySelector('.heart-divider').style.opacity = '1';
+            }, 1000);
+        }
+        
+        // Letter action button click
+        letterActionBtn.addEventListener('click', function() {
+            if (isLetterOpen) {
+                foldLetter();
+            } else {
+                openLetter();
+            }
+        });
+        
+        // Secret message reveal
+        if (secretBtn && secretContent) {
+            // Set initial text
+            updateSecretButtonText();
+            
+            secretBtn.addEventListener('click', function() {
+                secretContent.classList.toggle('revealed');
+                updateSecretButtonText();
+                
+                if (secretContent.classList.contains('revealed')) {
+                    // Add sparkle animation
+                    const sparkles = document.createElement('div');
+                    sparkles.className = 'sparkle-effect';
+                    sparkles.innerHTML = '✨✨✨';
+                    secretContent.appendChild(sparkles);
+                    
+                    // Remove sparkles after animation
+                    setTimeout(() => {
+                        if (sparkles.parentNode) {
+                            sparkles.parentNode.removeChild(sparkles);
+                        }
+                    }, 2000);
+                }
+            });
+        }
+        
+    });
+    
+    function initFloatingPetals() {
+        const petals = document.querySelectorAll('.petal');
+        petals.forEach((petal, index) => {
+            // Random position
+            const left = Math.random() * 100;
+            const top = Math.random() * 100;
+            
+            // Random animation
+            const duration = 15 + Math.random() * 20;
+            const delay = Math.random() * 10;
+            const size = 1 + Math.random() * 2;
+            
+            petal.style.left = `${left}%`;
+            petal.style.top = `${top}%`;
+            petal.style.animationDuration = `${duration}s`;
+            petal.style.animationDelay = `${delay}s`;
+            petal.style.fontSize = `${size}rem`;
+            petal.style.opacity = `${0.3 + Math.random() * 0.4}`;
+        });
+    }
+</script>
 </body>
-
 </html>

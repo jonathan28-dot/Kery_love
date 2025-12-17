@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Love Music For You ❤️</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Love Music For Kery ❤️</title>
+    <link rel="stylesheet" href="css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
@@ -13,85 +13,108 @@
 <body class="music-bg">
     <div class="container">
         <header class="main-header">
-            <h1>Songs That Remind Me of <span class="highlight">You</span></h1>
-            <p class="subtitle">Beautiful music for a beautiful soul</p>
+            <h1>Songs That Remind Me of <span class="person-name">Kery</span></h1>
+            <p class="subtitle">Beautiful music for <span class="person-name">Kery's</span> beautiful soul</p>
         </header>
         
         <main class="music-container">
             <div class="music-intro">
-                <p>Some songs capture feelings better than words ever could. These songs remind me of the light you bring to the world.</p>
+                <p>Some songs capture feelings better than words ever could. These songs remind me of <span class="person-name">Kery's</span> beautiful light.</p>
             </div>
             
-            <div class="video-player">
-                <div class="player-placeholder">
-                    <div class="player-icon">
-                        <i class="fas fa-play-circle"></i>
+            <!-- Compact Video Player -->
+            <div class="compact-video-player">
+                <h2><i class="fas fa-play-circle"></i> <span class="person-name">Kery's</span> Love Playlist</h2>
+                
+                <div class="video-slider">
+                    <!-- Video 1 - Compact -->
+                    <div class="video-item active">
+                        <div class="video-thumbnail">
+                            <div class="play-btn"><i class="fas fa-play"></i></div>
+                            <img src="https://img.youtube.com/vi/BS46_TW1rAo/mqdefault.jpg" alt="You're Beautiful">
+                        </div>
+                        <div class="video-info-compact">
+                            <h3>You're Beautiful</h3>
+                            <p class="artist">James Blunt</p>
+                            <p class="song-message">This song reminds me of how beautiful <span class="person-name">Kery</span> truly is</p>
+                            <a href="https://youtu.be/BS46_TW1rAo" target="_blank" class="watch-btn">
+                                <i class="fas fa-external-link-alt"></i> Listen for <span class="person-name">Kery</span>
+                            </a>
+                        </div>
                     </div>
-                    <h3>Love & Admiration Playlist</h3>
-                    <p>Imagine beautiful music playing here...</p>
                     
-                    <div class="song-list">
-                        <div class="song-item">
-                            <i class="fas fa-music"></i>
-                            <span>"You're Beautiful" - James Blunt</span>
+                    <!-- Video 2 - Compact -->
+                    <div class="video-item">
+                        <div class="video-thumbnail">
+                            <div class="play-btn"><i class="fas fa-play"></i></div>
+                            <img src="https://img.youtube.com/vi/rtOvBOTyX00/mqdefault.jpg" alt="A Thousand Years">
                         </div>
-                        <div class="song-item">
-                            <i class="fas fa-music"></i>
-                            <span>"A Thousand Years" - Christina Perri</span>
+                        <div class="video-info-compact">
+                            <h3>A Thousand Years</h3>
+                            <p class="artist">Christina Perri</p>
+                            <p class="song-message">I could admire <span class="person-name">Kery</span> for a thousand years</p>
+                            <a href="https://youtu.be/rtOvBOTyX00" target="_blank" class="watch-btn">
+                                <i class="fas fa-external-link-alt"></i> Listen for <span class="person-name">Kery</span>
+                            </a>
                         </div>
-                        <div class="song-item">
-                            <i class="fas fa-music"></i>
-                            <span>"Perfect" - Ed Sheeran</span>
+                    </div>
+                    
+                    <!-- Video 3 - Compact -->
+                    <div class="video-item">
+                        <div class="video-thumbnail">
+                            <div class="play-btn"><i class="fas fa-play"></i></div>
+                            <img src="https://img.youtube.com/vi/2Vv-BfVoq4g/mqdefault.jpg" alt="Perfect">
                         </div>
-                        <div class="song-item">
-                            <i class="fas fa-music"></i>
-                            <span>"Just the Way You Are" - Bruno Mars</span>
+                        <div class="video-info-compact">
+                            <h3>Perfect</h3>
+                            <p class="artist">Ed Sheeran</p>
+                            <p class="song-message">Because <span class="person-name">Kery</span> is already perfect just as <span class="person-name">Kery</span> is</p>
+                            <a href="https://youtu.be/2Vv-BfVoq4g" target="_blank" class="watch-btn">
+                                <i class="fas fa-external-link-alt"></i> Listen for <span class="person-name">Kery</span>
+                            </a>
                         </div>
                     </div>
                 </div>
                 
-                <div class="player-instructions">
-                    <p><i class="fas fa-info-circle"></i> This is where you could embed YouTube videos or Spotify playlists that remind you of her.</p>
-                    <p><strong>How to add real music:</strong> Replace this section with embedded YouTube links or Spotify players of songs that make you think of her amazing qualities.</p>
+                <div class="player-controls">
+                    <button class="control-btn prev-btn"><i class="fas fa-chevron-left"></i></button>
+                    <button class="control-btn play-all-btn"><i class="fas fa-play"></i> Play All for <span class="person-name">Kery</span></button>
+                    <button class="control-btn next-btn"><i class="fas fa-chevron-right"></i></button>
                 </div>
             </div>
             
             <div class="music-message">
                 <div class="message-card">
-                    <h2><i class="fas fa-headphones"></i> Why Music?</h2>
-                    <p>Because sometimes a melody can express what words cannot. Because certain songs capture the feeling of admiration, respect, and appreciation better than paragraphs ever could.</p>
-                    <p>When you listen to beautiful music, I hope it reminds you that you are:</p>
+                    <h2><i class="fas fa-headphones"></i> Why Music for <span class="person-name">Kery</span>?</h2>
+                    <p>Because sometimes a melody can express what words cannot. These songs capture the way I feel about <span class="person-name">Kery</span> - all the admiration, respect, and appreciation.</p>
+                    <p>When <span class="person-name">Kery</span> listens to beautiful music, I hope it reminds <span class="person-name">Kery</span> that:</p>
                     <ul class="music-list">
-                        <li><i class="fas fa-heart"></i> Worthy of beautiful things</li>
-                        <li><i class="fas fa-heart"></i> Deserving of happiness</li>
-                        <li><i class="fas fa-heart"></i> As special as the most beautiful symphony</li>
+                        <li><i class="fas fa-heart"></i> <span class="person-name">Kery</span> is worthy of beautiful things</li>
+                        <li><i class="fas fa-heart"></i> <span class="person-name">Kery</span> deserves happiness</li>
+                        <li><i class="fas fa-heart"></i> <span class="person-name">Kery</span> is as special as the most beautiful symphony</li>
                     </ul>
                 </div>
             </div>
             
             <div class="playlist-suggestion">
-                <h3><i class="fas fa-plus-circle"></i> Create Your Own Playlist</h3>
-                <p>Make a playlist of songs that make you feel good about yourself. Call it "I Am Amazing" or "My Happy Place." Fill it with music that lifts you up and reminds you of your worth.</p>
+                <h3><i class="fas fa-plus-circle"></i> Create <span class="person-name">Kery's</span> Own Playlist</h3>
+                <p><span class="person-name">Kery</span>, make a playlist of songs that make you feel good about yourself. Call it "<span class="person-name">Kery</span> is Amazing" or "<span class="person-name">Kery's</span> Happy Place."</p>
             </div>
             
             <div class="navigation">
-                <a href="yes.html" class="next-btn">
-                    <i class="fas fa-arrow-right"></i> Return to Amazing Things
-                </a>
                 <div class="page-links">
-                    <a href="qualities.html"><i class="fas fa-backward"></i> Your Qualities</a>
-                    <a href="admire.html"><i class="fas fa-star"></i> Reasons</a>
+                    <a href="yes.html"><i class="fas fa-backward"></i> Back to Main</a>
+                    <a href="qualities.html"><i class="fas fa-star"></i> <span class="person-name">Kery's</span> Qualities</a>
                     <a href="index.html"><i class="fas fa-home"></i> Home</a>
                 </div>
             </div>
         </main>
         
         <footer class="main-footer">
-            <p>May your life always have a beautiful soundtrack ❤️</p>
+            <p>May <span class="person-name">Kery's</span> life always have a beautiful soundtrack ❤️</p>
         </footer>
     </div>
     
-    <script src="scripts.js"></script>
+    <script src="js/scripts.js"></script>
 </body>
-
 </html>
