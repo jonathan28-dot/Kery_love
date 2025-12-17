@@ -165,6 +165,59 @@
             transform: scale(1.1);
             box-shadow: 0 15px 40px rgba(255, 107, 139, 0.6);
         }
+        .navigation {
+            margin: 3rem 0;
+            text-align: center;
+        }
+
+        .next-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #e63946 0%, #b9879e 100%);
+            color: white;
+            padding: 1.2rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1.1rem;
+            box-shadow: 0 8px 20px rgba(230, 57, 70, 0.3);
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 2rem;
+        }
+
+        .next-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 25px rgba(230, 57, 70, 0.4);
+        }
+        .page-links {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .page-links a {
+            color: #b33971;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.8rem 1.5rem;
+            background: white;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            border: 2px solid #ffc3a0;
+        }
+
+        .page-links a:hover {
+            background: #e63946;
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(230, 57, 70, 0.3);
+        }
 
         /* Video Controls */
         .video-controls {
@@ -597,6 +650,17 @@
                 just like you do for me every single day.
             </p>
         </div>
+        <div class="navigation">
+                
+                <div class="page-links">
+                    <a href="index.html"><i class="fas fa-home"></i> Home</a>
+                    <a href="qualities.html" class="heart-btn" style="background: linear-gradient(135deg, #e63946 0%, #b33971 100%); color: white; border: none;">
+                        <i class="fas fa-heart"></i> Love Letter
+                    </a>
+                    <a href="qualities.html"><i class="fas fa-backward"></i> Back</a>
+
+                </div>
+            </div>
     </div>
     
     <script>
