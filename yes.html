@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>How Amazing You Are, Kery ✨</title>
+    <title>For You ❤️ | How Amazing You Are</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
@@ -18,124 +18,121 @@
 
         body {
             font-family: 'Playfair Display', serif;
-            color: #5a3d3d;
+            color: #fff;
             line-height: 1.6;
             min-height: 100vh;
             overflow-x: hidden;
-            background: linear-gradient(135deg, #eb1236 0%, #ee9c9c 100%);
-            background-attachment: fixed;
+            background: #000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
 
         /* Container */
         .container {
+            width: 100%;
             max-width: 1200px;
-            margin: 0 auto;
             padding: 2rem;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+            position: relative;
+            z-index: 2;
         }
 
-        /* Typography */
-        h1, h2, h3 {
-            font-family: 'Dancing Script', cursive;
-            font-weight: 700;
-        }
-
-        h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
+        /* Header */
+        .main-header {
             text-align: center;
+            margin-bottom: 3rem;
+            animation: fadeIn 1.5s ease-out;
         }
 
-        h2 {
-            font-size: 2.5rem;
+        .title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.5rem;
+            font-weight: 700;
             margin-bottom: 1rem;
-        }
-
-        h3 {
-            font-size: 1.8rem;
-            margin-bottom: 0.8rem;
-        }
-
-        .highlight {
-            color: #e63946;
-            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+            color: #ff6b8b;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+            background: linear-gradient(45deg, #ff6b8b, #ff8ba0, #ff6b8b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
         .subtitle {
             font-size: 1.2rem;
-            text-align: center;
-            color: #a76d6d;
-            margin-bottom: 2rem;
+            color: rgba(255, 255, 255, 0.8);
             font-style: italic;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        /* Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes heartbeat {
-            0% { transform: scale(1); }
-            50% { transform: scale(1.1); }
-            100% { transform: scale(1); }
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-15px); }
-        }
-
-        @keyframes dropdown {
-            from { max-height: 0; opacity: 0; }
-            to { max-height: 500px; opacity: 1; }
-        }
-
-        .fade-in {
-            animation: fadeIn 1.5s ease-out;
-        }
-
-        .heartbeat {
+        /* Heart Icon */
+        .heart-icon {
+            font-size: 2.5rem;
+            color: #ff6b8b;
+            margin: 1rem 0;
             animation: heartbeat 2s infinite;
+        }
+
+        /* Main Content Container */
+        .content-container {
+            position: relative;
+            width: 100%;
+            max-width: 1000px;
+            margin: 0 auto;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(255, 107, 139, 0.15);
+            border: 2px solid rgba(255, 107, 139, 0.2);
+            backdrop-filter: blur(10px);
+            padding: 3rem;
         }
 
         /* Person Name Styling */
         .person-name {
-            color: #e63946;
+            color: #ff6b8b;
             font-weight: bold;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+            background: linear-gradient(45deg, #ff6b8b, #ff8ba0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
             font-family: 'Dancing Script', cursive;
-            font-size: 1.2em;
+            font-size: 1.3em;
+            position: relative;
+            display: inline-block;
         }
 
-        /* Yes Page */
-        .main-header {
-            text-align: center;
-            margin-bottom: 3rem;
+        .person-name::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #ff6b8b, transparent);
+            opacity: 0.7;
         }
 
-        .content {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            padding: 3rem;
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
+        /* Welcome Message */
         .welcome-message {
             text-align: center;
+            font-size: 1.3rem;
             margin-bottom: 3rem;
-            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.8;
         }
 
         .emphasis {
             font-size: 1.5rem;
-            color: #e63946;
+            color: #ff6b8b;
             font-weight: bold;
             margin: 1.5rem 0;
+            display: block;
+            font-family: 'Dancing Script', cursive;
         }
 
         /* Dropdown Cards */
@@ -147,24 +144,29 @@
         }
 
         .thing-card {
-            background: white;
+            background: rgba(255, 255, 255, 0.1);
             border-radius: 15px;
             padding: 1.5rem;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-            border-top: 5px solid #e63946;
+            border-top: 5px solid #ff6b8b;
             transition: all 0.3s ease;
             cursor: pointer;
             overflow: hidden;
+            border: 1px solid rgba(255, 107, 139, 0.2);
         }
 
         .thing-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(230, 57, 70, 0.15);
+            background: rgba(255, 107, 139, 0.1);
+            box-shadow: 0 15px 30px rgba(255, 107, 139, 0.15);
+            border-color: rgba(255, 107, 139, 0.4);
         }
 
         .thing-card.active {
             transform: translateY(-5px);
-            box-shadow: 0 20px 40px rgba(230, 57, 70, 0.2);
+            background: rgba(255, 107, 139, 0.15);
+            box-shadow: 0 20px 40px rgba(255, 107, 139, 0.2);
+            border-color: rgba(255, 107, 139, 0.5);
         }
 
         .card-header {
@@ -177,7 +179,7 @@
         .thing-icon {
             width: 60px;
             height: 60px;
-            background: linear-gradient(135deg, #e63946 0%, #b33971 100%);
+            background: linear-gradient(135deg, #ff6b8b 0%, #ff4757 100%);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -188,13 +190,15 @@
         }
 
         .card-title {
-            color: #e63946;
+            color: #ff6b8b;
             margin-bottom: 0.5rem;
             flex-grow: 1;
+            font-family: 'Dancing Script', cursive;
+            font-size: 1.8rem;
         }
 
         .dropdown-icon {
-            color: #e63946;
+            color: #ff6b8b;
             font-size: 1.2rem;
             transition: transform 0.3s ease;
         }
@@ -215,11 +219,11 @@
             opacity: 1;
             margin-top: 1rem;
             padding-top: 1rem;
-            border-top: 1px dashed #ffc3a0;
+            border-top: 1px dashed rgba(255, 107, 139, 0.3);
         }
 
         .card-content p {
-            color: #5a3d3d;
+            color: rgba(255, 255, 255, 0.9);
             font-size: 1rem;
             line-height: 1.6;
             margin-bottom: 0.5rem;
@@ -227,11 +231,12 @@
 
         /* Love Note */
         .love-note {
-            background: linear-gradient(135deg, #fff5f5 0%, #ffe6e6 100%);
+            background: rgba(255, 107, 139, 0.1);
             border-radius: 15px;
             padding: 2.5rem;
             margin: 3rem 0;
-            border-left: 5px solid #e63946;
+            border-left: 5px solid #ff6b8b;
+            border: 1px solid rgba(255, 107, 139, 0.2);
         }
 
         .note-header {
@@ -244,14 +249,20 @@
         }
 
         .note-header i {
-            color: #e63946;
+            color: #ff6b8b;
             font-size: 1.5rem;
+        }
+
+        .note-header h2 {
+            color: #ff6b8b;
+            font-family: 'Dancing Script', cursive;
+            font-size: 2rem;
         }
 
         .note-text {
             font-size: 1.2rem;
             font-style: italic;
-            color: #5a3d3d;
+            color: rgba(255, 255, 255, 0.9);
             line-height: 1.8;
             margin-bottom: 1rem;
         }
@@ -268,14 +279,14 @@
 
         .next-btn {
             display: inline-block;
-            background: linear-gradient(135deg, #e63946 0%, #b33971 100%);
+            background: linear-gradient(135deg, #ff6b8b 0%, #ff4757 100%);
             color: white;
             padding: 1.2rem 2.5rem;
             border-radius: 50px;
             text-decoration: none;
             font-weight: bold;
             font-size: 1.1rem;
-            box-shadow: 0 8px 20px rgba(230, 57, 70, 0.3);
+            box-shadow: 0 8px 20px rgba(255, 107, 139, 0.3);
             transition: all 0.3s ease;
             display: inline-flex;
             align-items: center;
@@ -285,7 +296,7 @@
 
         .next-btn:hover {
             transform: translateY(-5px);
-            box-shadow: 0 12px 25px rgba(230, 57, 70, 0.4);
+            box-shadow: 0 12px 25px rgba(255, 107, 139, 0.4);
         }
 
         .page-links {
@@ -296,24 +307,34 @@
         }
 
         .page-links a {
-            color: #b33971;
+            color: #ff6b8b;
             text-decoration: none;
             font-weight: 600;
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
             padding: 0.8rem 1.5rem;
-            background: rgba(255, 255, 255, 0.8);
+            background: rgba(255, 255, 255, 0.1);
             border-radius: 50px;
             transition: all 0.3s ease;
-            border: 1px solid #ffc3a0;
+            border: 1px solid rgba(255, 107, 139, 0.2);
         }
 
         .page-links a:hover {
-            background: #e63946;
+            background: rgba(255, 107, 139, 0.3);
             color: white;
             transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(230, 57, 70, 0.3);
+            box-shadow: 0 5px 15px rgba(255, 107, 139, 0.3);
+        }
+
+        .heart-btn {
+            background: linear-gradient(135deg, #ff6b8b 0%, #ff4757 100%) !important;
+            color: white !important;
+            border: none !important;
+        }
+
+        .heart-btn:hover {
+            background: linear-gradient(135deg, #ff4757 0%, #ff2e63 100%) !important;
         }
 
         /* Main Footer */
@@ -321,27 +342,73 @@
             text-align: center;
             margin-top: 2rem;
             padding-top: 2rem;
-            border-top: 1px solid rgba(230, 57, 70, 0.2);
-            color: #a76d6d;
+            border-top: 1px solid rgba(255, 107, 139, 0.2);
+            color: rgba(255, 255, 255, 0.7);
             font-size: 0.9rem;
         }
 
-        /* Heart Animation */
-        .hearts-container {
+        /* Floating Hearts */
+        .floating-hearts {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
             pointer-events: none;
-            z-index: -1;
+            z-index: 1;
         }
 
         .floating-heart {
             position: absolute;
             font-size: 1.5rem;
-            color: rgba(230, 57, 70, 0.2);
-            animation: float 5s infinite ease-in-out;
+            animation: floatHeart 15s infinite linear;
+            opacity: 0.2;
+            color: #ff6b8b;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+        }
+
+        @keyframes floatHeart {
+            0% {
+                transform: translateY(100vh) translateX(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.3;
+            }
+            90% {
+                opacity: 0.3;
+            }
+            100% {
+                transform: translateY(-100px) translateX(100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes ripple {
+            to {
+                transform: scale(4);
+                opacity: 0;
+            }
+        }
+
+        .fade-in {
+            animation: fadeIn 1.5s ease-out forwards;
         }
 
         /* Fade-in items */
@@ -358,24 +425,21 @@
 
         /* Responsive Design */
         @media (max-width: 768px) {
-            h1 {
-                font-size: 2.5rem;
-            }
-            
-            h2 {
-                font-size: 2rem;
-            }
-            
-            h3 {
-                font-size: 1.5rem;
-            }
-            
             .container {
                 padding: 1rem;
             }
             
-            .content {
+            .content-container {
                 padding: 2rem 1.5rem;
+            }
+            
+            .title {
+                font-size: 2.5rem;
+            }
+            
+            .subtitle {
+                font-size: 1rem;
+                padding: 0 1rem;
             }
             
             .amazing-things {
@@ -391,6 +455,14 @@
                 width: 50px;
                 height: 50px;
                 font-size: 1.2rem;
+            }
+            
+            .card-title {
+                font-size: 1.5rem;
+            }
+            
+            .note-header h2 {
+                font-size: 1.8rem;
             }
             
             .note-text {
@@ -410,11 +482,11 @@
         }
 
         @media (max-width: 480px) {
-            h1 {
+            .title {
                 font-size: 2rem;
             }
             
-            .content {
+            .content-container {
                 padding: 1.5rem;
             }
             
@@ -433,30 +505,27 @@
         }
     </style>
 </head>
-<body class="love-bg">
-    <!-- Heart Animation Background -->
-    <div class="hearts-container">
-        <div class="floating-heart">❤️</div>
-        <div class="floating-heart">💖</div>
-        <div class="floating-heart">✨</div>
-        <div class="floating-heart">💗</div>
-        <div class="floating-heart">💕</div>
-        <div class="floating-heart">❤️</div>
-        <div class="floating-heart">💖</div>
-        <div class="floating-heart">✨</div>
-    </div>
+<body>
+    <!-- Floating Hearts Background -->
+    <div class="floating-hearts" id="floatingHearts"></div>
     
     <div class="container">
-        <main class="content">
-            <header class="main-header">
-                <h1 class="heartbeat">For you <span class="person-name"> Kery</span></h1>
-                <p class="subtitle">A celebration of you and your wonderful presence</p>
-            </header>
-
-            <div class="welcome-message fade-in">
+        <!-- Main Header -->
+        <div class="main-header fade-in">
+            <h1 class="title">For You <span class="person-name">Kery</span>, Truly ❤️</h1>
+            <div class="heart-icon">
+                <i class="fas fa-heart"></i>
+            </div>
+            <p class="subtitle">A celebration of you and your wonderful presence</p>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="content-container fade-in">
+            <!-- Welcome Message -->
+            <div class="welcome-message">
                 <p>You said yes! And that makes me so happy.</p>
                 <p>Because I created this to remind you of something important...</p>
-                <p class="emphasis">You are absolutely amazing, <span class="person-name">Kery</span>.</p>
+                <p class="emphasis">You are absolutely amazing, <span class="person-name" id="userName">You</span>.</p>
             </div>
             
             <!-- Dropdown Cards -->
@@ -530,46 +599,59 @@
                 </div>
             </div>
             
+            <!-- Love Note -->
             <div class="love-note fade-in">
                 <div class="note-header">
                     <i class="fas fa-quote-left"></i>
-                    <h2>A Special Thought for <span class="person-name">Kery</span></h2>
+                    <h2>A Special Thought for <span class="person-name">You</span></h2>
                     <i class="fas fa-quote-right"></i>
                 </div>
                 <p class="note-text">"Some people come into our lives and quietly leave. Others stay for a while and leave footprints on our hearts. You're the kind of person whose footprints create beautiful patterns that last forever."</p>
                 <p class="note-text">"This is personal from <span class="person-name">Jo</span>😂, I just adore your Daily look, you always look woow💗 and 'Your style matches your soul: beautiful, confident, and unforgettable.'"</p>
             </div>
             
+            <!-- Navigation -->
             <div class="navigation">
                 <a href="admire.html" class="next-btn">
                     <i class="fas fa-arrow-right"></i> Discover More
                 </a>
                 <div class="page-links">
                     <a href="index.html"><i class="fas fa-home"></i> Home</a>
-                    <a href="music.html"><i class="fas fa-music"></i> Song🎧</a>
+                    <a href="music.html"><i class="fas fa-music"></i> Music</a>
                     <a href="qualities.html" class="heart-btn">
-                        <i class="fas fa-heart"></i> For you💗
+                        <i class="fas fa-heart"></i> For You 💗
                     </a>
                 </div>
             </div>
-          
-            <footer class="main-footer">
-                <p>Made with admiration for <span class="person-name">Kery</span>, someone truly special ❤️</p>
-            </footer>
-        </main>
+            
+            <!-- Footer -->
+            <div class="main-footer">
+                <p>Made with admiration for <span class="person-name">You</span>, someone truly special ❤️</p>
+            </div>
+        </div>
     </div>
-
+    
     <script>
-        // Initialize when page loads
         document.addEventListener('DOMContentLoaded', function() {
-            // Initialize floating hearts
-            initFloatingHearts();
+            // Update name from localStorage
+            const savedName = localStorage.getItem('specialPersonName');
+            if (savedName && savedName !== 'You') {
+                document.querySelectorAll('.person-name').forEach(el => {
+                    if (el.textContent === 'You' || el.textContent === 'You') {
+                        el.textContent = savedName;
+                    } else if (el.textContent === 'Jo') {
+                        // Keep 'Jo' as is
+                        return;
+                    }
+                });
+                document.getElementById('userName').textContent = savedName;
+            }
+            
+            // Create floating hearts
+            createFloatingHearts();
             
             // Initialize fade-in animations
             initFadeInAnimations();
-            
-            // Update name if different
-            updateName();
             
             // Open first card automatically after a delay
             setTimeout(() => {
@@ -578,8 +660,34 @@
                     toggleCard(firstCard, true);
                 }
             }, 2000);
+            
+            // Add ripple effect to cards
+            document.querySelectorAll('.thing-card').forEach(card => {
+                card.addEventListener('click', function(e) {
+                    createRippleEffect(e, card);
+                });
+            });
+            
+            // Add click effect for whole page
+            document.addEventListener('click', function(e) {
+                if (e.target.closest('.thing-card') || e.target.closest('.next-btn') || e.target.closest('.page-links a')) return;
+                
+                const heart = document.createElement('div');
+                heart.innerHTML = '❤️';
+                heart.style.position = 'fixed';
+                heart.style.left = `${e.clientX}px`;
+                heart.style.top = `${e.clientY}px`;
+                heart.style.fontSize = '2rem';
+                heart.style.pointerEvents = 'none';
+                heart.style.zIndex = '1000';
+                heart.style.animation = 'float 3s ease-in-out forwards';
+                heart.style.color = '#ff6b8b';
+                document.body.appendChild(heart);
+                
+                setTimeout(() => heart.remove(), 3000);
+            });
         });
-
+        
         // Toggle card dropdown
         function toggleCard(card, openOnly = false) {
             const isActive = card.classList.contains('active');
@@ -606,38 +714,35 @@
             // Add click sound effect
             playClickSound();
         }
-
-        // Initialize floating hearts
-        function initFloatingHearts() {
-            const heartsContainer = document.querySelector('.hearts-container');
-            const hearts = ['❤️', '💖', '✨', '💗', '💕'];
+        
+        // Create floating hearts
+        function createFloatingHearts() {
+            const container = document.getElementById('floatingHearts');
+            const hearts = ['❤️', '💖', '✨', '💗', '💕', '💘', '💝', '💓', '💞'];
             
-            // Create more hearts
-            for (let i = 0; i < 15; i++) {
+            for (let i = 0; i < 20; i++) {
                 const heart = document.createElement('div');
                 heart.className = 'floating-heart';
-                heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+                heart.innerHTML = hearts[Math.floor(Math.random() * hearts.length)];
                 
                 // Random position
                 const left = Math.random() * 100;
-                const top = Math.random() * 100;
-                
-                // Random animation
-                const duration = 4 + Math.random() * 4;
-                const delay = Math.random() * 5;
                 const size = 1 + Math.random() * 1.5;
+                const duration = 15 + Math.random() * 20;
+                const delay = Math.random() * 10;
+                const colors = ['#ff6b8b', '#ff8ba0', '#ff4757', '#ffb3c1'];
                 
                 heart.style.left = `${left}%`;
-                heart.style.top = `${top}%`;
+                heart.style.fontSize = `${size}rem`;
                 heart.style.animationDuration = `${duration}s`;
                 heart.style.animationDelay = `${delay}s`;
-                heart.style.fontSize = `${size}rem`;
-                heart.style.opacity = `${0.1 + Math.random() * 0.3}`;
+                heart.style.opacity = `${0.1 + Math.random() * 0.2}`;
+                heart.style.color = colors[Math.floor(Math.random() * colors.length)];
                 
-                heartsContainer.appendChild(heart);
+                container.appendChild(heart);
             }
         }
-
+        
         // Initialize fade-in animations
         function initFadeInAnimations() {
             const fadeElements = document.querySelectorAll('.fade-in-item');
@@ -657,10 +762,9 @@
             fadeInOnScroll();
             window.addEventListener('scroll', fadeInOnScroll);
         }
-
+        
         // Play click sound effect
         function playClickSound() {
-            // Create a subtle click sound using Web Audio API
             try {
                 const audioContext = new (window.AudioContext || window.webkitAudioContext)();
                 const oscillator = audioContext.createOscillator();
@@ -678,83 +782,49 @@
                 oscillator.start(audioContext.currentTime);
                 oscillator.stop(audioContext.currentTime + 0.1);
             } catch (e) {
-                // Fallback: visual feedback if audio fails
                 console.log("Audio not supported, using visual feedback");
             }
         }
-
-        // Update name if different
-        function updateName() {
-            const savedName = localStorage.getItem('specialPersonName');
-            if (!savedName || savedName === 'Kery') return;
+        
+        // Create ripple effect
+        function createRippleEffect(e, card) {
+            const ripple = document.createElement('span');
+            const rect = card.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            const x = e.clientX - rect.left - size / 2;
+            const y = e.clientY - rect.top - size / 2;
             
-            document.querySelectorAll('.person-name').forEach(element => {
-                if (element.textContent === 'Kery') {
-                    element.textContent = savedName;
-                } else if (element.textContent === 'Jo') {
-                    // Keep 'Jo' as is
-                    return;
-                }
-            });
+            ripple.style.cssText = `
+                position: absolute;
+                border-radius: 50%;
+                background: rgba(255, 107, 139, 0.2);
+                transform: scale(0);
+                animation: ripple 0.6s linear;
+                width: ${size}px;
+                height: ${size}px;
+                top: ${y}px;
+                left: ${x}px;
+                pointer-events: none;
+            `;
+            
+            card.style.position = 'relative';
+            card.style.overflow = 'hidden';
+            card.appendChild(ripple);
+            
+            // Remove ripple after animation
+            setTimeout(() => {
+                ripple.remove();
+            }, 600);
         }
-
-        // Add ripple effect to cards
-        document.querySelectorAll('.thing-card').forEach(card => {
-            card.addEventListener('click', function(e) {
-                // Create ripple effect
-                const ripple = document.createElement('span');
-                const rect = card.getBoundingClientRect();
-                const size = Math.max(rect.width, rect.height);
-                const x = e.clientX - rect.left - size / 2;
-                const y = e.clientY - rect.top - size / 2;
-                
-                ripple.style.cssText = `
-                    position: absolute;
-                    border-radius: 50%;
-                    background: rgba(230, 57, 70, 0.1);
-                    transform: scale(0);
-                    animation: ripple 0.6s linear;
-                    width: ${size}px;
-                    height: ${size}px;
-                    top: ${y}px;
-                    left: ${x}px;
-                    pointer-events: none;
-                `;
-                
-                card.style.position = 'relative';
-                card.style.overflow = 'hidden';
-                card.appendChild(ripple);
-                
-                // Remove ripple after animation
-                setTimeout(() => {
-                    ripple.remove();
-                }, 600);
+        
+        // Auto-update floating hearts
+        setInterval(() => {
+            const hearts = document.querySelectorAll('.floating-heart');
+            hearts.forEach(heart => {
+                heart.style.left = `${Math.random() * 100}%`;
+                heart.style.animationDelay = `${Math.random() * 5}s`;
             });
-        });
-
-        // Add ripple animation to CSS
-        const style = document.createElement('style');
-        style.textContent = `
-            @keyframes ripple {
-                to {
-                    transform: scale(4);
-                    opacity: 0;
-                }
-            }
-            
-            .heart-btn {
-                background: linear-gradient(135deg, #e63946 0%, #b33971 100%) !important;
-                color: white !important;
-                border: none !important;
-            }
-            
-            .heart-btn:hover {
-                background: linear-gradient(135deg, #d42d3f 0%, #a12d5e 100%) !important;
-            }
-        `;
-        document.head.appendChild(style);
+        }, 30000);
     </script>
 </body>
-
 </html>
-
