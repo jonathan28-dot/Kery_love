@@ -29,6 +29,7 @@ body {
     background-attachment: fixed;
 }
 
+
 /* Container */
 .container {
     max-width: 1200px;
@@ -39,6 +40,7 @@ body {
     flex-direction: column;
     justify-content: center;
 }
+
 
 /* Typography */
 h1, h2, h3 {
@@ -978,4 +980,5 @@ h3 {
     .player-placeholder {
         padding: 2rem 1rem;
     }
+    
 }
